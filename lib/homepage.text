@@ -1,0 +1,19 @@
+
+Always inside the container i.e statefull
+DefaultTabController + Tabview (Goes togethr)
+
+bwlow this we talk about the TabBarView (where we have placed the icon )
+( Inside the screentype)
+
+Below we have serch bar  which is inside a WIDGET 
+
+
+The issue is that your AppBar within buildCustomAppBar is not being displayed because it’s not inside a Scaffold. Also, you need to add content in the body to see the TabBar content.
+
+Here’s the updated code to fix this issue:
+
+Ensure DefaultTabController wraps the entire scaffold if you want the TabBar and TabBarView to work together.
+Provide TabBarView with corresponding tabs.
+Use the ResponsiveBuilder to adjust the search bar size accordingly.
+
+
