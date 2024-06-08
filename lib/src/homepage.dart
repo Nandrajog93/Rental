@@ -1,150 +1,203 @@
-import 'package:responsive_builder/responsive_builder.dart';
-import 'package:flutter/material.dart';
 
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 5,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white, // AppBar background color
-          elevation: 0, // Removes the shadow for a clean look
-         // title: GestureDetector(
-            // onTap: () {
-            //   // Navigate to home page
-            //   Navigator.push(
-            //     context,
-            //     MaterialPageRoute(builder: (context) => MyHomePage()),
-            //   );
-            // },
-            title: Container(
-              padding: EdgeInsets.all(8.0), // Add padding around the logo
-              decoration: BoxDecoration(
-                color: Colors.white, // Logo background color
-                borderRadius: BorderRadius.circular(8.0), // Rounded corners
-              ),
-              child: Image.asset(
-                '/Users/nandrajog/Downloads/test_application/lib/download.png',
-                height: 50, // Adjust the height according to your needs
-              ),
-            ),
-         // ),
-          bottom: const TabBar(
-             indicatorColor: Colors.lightBlue,
-            indicatorWeight: 4.0,
-            labelColor: Colors.blue,
-            unselectedLabelColor: Colors.grey,
-            tabs: [
-              Tab(icon: Icon(Icons.home)),
-              Tab(icon: Icon(Icons.bolt_outlined)),
-              Tab(icon: Icon(Icons.backpack)),
-              Tab(icon: Icon(Icons.fire_extinguisher)),
-              Tab(icon: Icon(Icons.hail)),
-            ],
-          ),
-        ),
-        body: ScreenTypeLayout(
-          mobile: buildLayout(context, DeviceScreenType.mobile),
-          tablet: buildLayout(context, DeviceScreenType.tablet),
-          desktop: buildLayout(context, DeviceScreenType.desktop),
-        ),
-      ),
-    );
-  }
+// import 'package:flutter/material.dart';
+// import 'package:responsive_builder/responsive_builder.dart';
+// import 'package:test_application/src/Grid_search_bar.dart';
+// //import 'package:test_application/src/Image_Grid.dart';import 'package:test_application/src/settings/searchBar.dart';
+// import 'timer.dart'; // Assuming you have a separate file for the Countdown widget
 
-  Widget buildLayout(BuildContext context, DeviceScreenType deviceScreenType) {
-    return TabBarView(
-      children: [
-        buildHomeContent(context, deviceScreenType),
-        buildTabContent2(context, Colors.white, Icons.bolt_outlined),
-        buildTabContent2(context, Colors.white, Icons.backpack),
-        buildTabContent2(context, Colors.white, Icons.fire_extinguisher),
-        buildTabContent1(context, Colors.white, Icons.hail),
-      ],
-    );
-  }
+// class SearchPage extends StatefulWidget {
+//   const SearchPage({super.key});
 
-  Widget buildHomeContent(BuildContext context, DeviceScreenType deviceScreenType) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              '',
-              style: Theme.of(context).textTheme.headlineSmall,
-              textAlign: deviceScreenType == DeviceScreenType.mobile ? TextAlign.start : TextAlign.center,
-            ),
-            buildSearchBar(context, deviceScreenType),
-            SizedBox(height: 20),
-            // Add other common widgets here
-          ],
-        ),
-      ),
-    );
-  }
+//   @override
+//   State<SearchPage> createState() => _SearchPageState();
+// }
 
-  Widget buildTabContent1(BuildContext context, Color color, IconData icon) {
-    return Container(
-      color: color,
-      child: Center(
-        child: Icon(icon, size: 100.0, color: Colors.white),
-      ),
-    );
-  }
-    Widget buildTabContent2(BuildContext context, Color color, IconData icon) {
-    return Container(
-      color: color,
-      child: Center(
-        child: Icon(icon, size: 100.0, color: Colors.purple),
-      ),
-    );
-  }
+// // class ImageItem {
+// //   final String imagePath;
+// //   final String description;
+// //   final DateTime? expiration_;
 
-  Widget buildSearchBar(BuildContext context, DeviceScreenType deviceScreenType) {
-    return ResponsiveBuilder(
-      builder: (context, sizingInformation) {
-        double width;
+// //   ImageItem({required this.imagePath, required this.description, this.expiration_});
+// // }
 
-        if (sizingInformation.deviceScreenType == DeviceScreenType.mobile) {
-          width = MediaQuery.of(context).size.width * 0.4;
-        } else if (sizingInformation.deviceScreenType == DeviceScreenType.tablet) {
-          width = MediaQuery.of(context).size.width * 0.6;
-        } else {
-          width = MediaQuery.of(context).size.width * 0.4;
-        }
-    return Container(
-      width: width,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30),
-        color: Colors.grey[200],
-      ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          children: [
-            TextField(
-              controller: null, // Replace with your actual controller
-              decoration: InputDecoration(
-                hintText: 'Search...',
-                border: InputBorder.none,
-                prefixIcon: Icon(Icons.search, color: Colors.grey),
-              ),
-            ),
+// class _SearchPageState extends State<SearchPage> {
+//   // List<ImageItem> _images2 = [];
+//   // List<ImageItem> _filteredImages2 = [];
+
+//   // @override
+//   // void initState() {
+//   //   super.initState();
+//   //   _initializeImages();
+     
+//   // }
+
+//   // void _initializeImages() {
+//   //   _images2 = [
+//   //     ImageItem(
+//   //       imagePath: '/Users/nandrajog/Downloads/test_application/lib/logo6.jpeg',
+//   //       description: 'Description 1',
+//   //       expiration_: DateTime.now().add(Duration(hours: 1)),
+//   //     ),
+//   //     ImageItem(
+//   //       imagePath: '/Users/nandrajog/Downloads/test_application/lib/logo4.jpeg',
+//   //       description: 'Description 2',
+//   //       expiration_: DateTime.now().add(Duration(hours: 3)),
+//   //     ),
+//   //     ImageItem(
+//   //       imagePath: '/Users/nandrajog/Downloads/test_application/lib/logo5.jpeg',
+//   //       description: 'Description 3',
+//   //       expiration_: DateTime.now().add(Duration(hours: 7)),
+//   //     ),
+      
+//   //   ];
 
 
-          ],
-        ),
-      ),
-    );
-        
+//   //   _filteredImages2 = List.from(_images2);
+
+//   // }
+
+//   // int _getCrossAxisCount(BuildContext context) {
+//   //   var deviceType = getDeviceType(MediaQuery.of(context).size);
+
+//   //   switch (deviceType) {
+//   //     case DeviceScreenType.desktop:
+//   //       return 4;
+//   //     case DeviceScreenType.tablet:
+//   //       return 3;
+//   //     case DeviceScreenType.mobile:
+//   //     default:
+//   //       return 2;
+//   //   }
+//   // }
+
+//   // double _getTextSize(BuildContext context) {
+//   //   var deviceType = getDeviceType(MediaQuery.of(context).size);
+
+//   //   switch (deviceType) {
+//   //     case DeviceScreenType.desktop:
+//   //       return 14.0;
+//   //     case DeviceScreenType.tablet:
+//   //       return 12.0;
+//   //     case DeviceScreenType.mobile:
+//   //     default:
+//   //       return 12.0;
+//   //   }
+//   // }
+
+//   // double _getPadding(BuildContext context) {
+//   //   var deviceType = getDeviceType(MediaQuery.of(context).size);
+
+//   //   switch (deviceType) {
+//   //     case DeviceScreenType.desktop:
+//   //       return 16.0;
+//   //     case DeviceScreenType.tablet:
+//   //       return 12.0;
+//   //     case DeviceScreenType.mobile:
+//   //     default:
+//   //       return 8.0;
+//   //   }
+//   // }
 
 
-      },
-    );
-  }
-}
+
+// //   void _filterImages(String query) {
+// //   setState(() {
+// //     if (query.isEmpty) {
+// //       _filteredImages2 = List.from(_images2); // Reset to original list when query is empty
+// //     } else {
+// //       _filteredImages2 = _images2.where((image) =>
+// //           image.description.toLowerCase().contains(query.toLowerCase())).toList();
+// //     }
+// //   });
+// // }
 
 
+//   @override
+//   Widget build(BuildContext context) {
+//     //double textSize = _getTextSize(context);
+//     //double padding = _getPadding(context);
+
+//     return Scaffold(
+//       body:  ImageGrid(
+//               images: [
+//                 ImageItem(
+//                   imagePath: '/Users/nandrajog/Downloads/test_application/lib/logo6.jpeg',
+//                   description: 'Description 1',
+//                   expiration_: DateTime.now().add(Duration(hours: 1)),
+//                 ),
+//                 ImageItem(
+//                   imagePath: '/Users/nandrajog/Downloads/test_application/lib/logo4.jpeg',
+//                   description: 'Description 2',
+//                   expiration_: DateTime.now().add(Duration(hours: 3)),
+//                 ),
+//                 ImageItem(
+//                   imagePath: '/Users/nandrajog/Downloads/test_application/lib/logo5.jpeg',
+//                   description: 'Description 3',
+//                   expiration_: DateTime.now().add(Duration(hours: 7)),
+//                 ),
+//               ],
+//             )
+//     );
+//   }
+// }
+
+
+
+
+
+//           // Expanded( // Add Expanded widget here
+//           //   child: Padding(
+//           //     padding: EdgeInsets.all(padding),
+//           //     child: GridView.builder(
+//           //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//           //         crossAxisCount: _getCrossAxisCount(context),
+//           //         crossAxisSpacing: 8.0,
+//           //         mainAxisSpacing: 8.0,
+//           //       ),
+//           //       itemCount: _filteredImages2.length,
+//           //       itemBuilder: (context, index) {
+//           //         return GridTile(
+//           //           child: Column(
+//           //             mainAxisAlignment: MainAxisAlignment.center,
+//           //             crossAxisAlignment: CrossAxisAlignment.center,
+//           //             children: [
+//           //              Expanded(
+//           //                     child: Image.asset(
+//           //                       _filteredImages2[index].imagePath,
+//           //                       fit: BoxFit.cover,
+//           //                     ),
+//           //                   ),
+//           //               // Container(
+//           //               //   padding: EdgeInsets.all(padding),    Instead of container use Expand 
+//           //               //   child: Image.asset(
+//           //               //     _filteredImages2[index].imagePath,
+//           //               //     fit: BoxFit.contain,
+//           //               //   ),
+//           //               // ),
+//           //               Padding(
+//           //                 padding: EdgeInsets.all(padding),
+//           //                 child: Text(
+//           //                   _filteredImages2[index].description,
+//           //                   textAlign: TextAlign.center,
+//           //                   style: TextStyle(fontSize: textSize),
+//           //                 ),
+//           //               ),
+//           //               if (_filteredImages2[index].expiration_ != null)
+//           //                 Countdown(
+//           //                   expiration: _filteredImages2[index].expiration_!,
+//           //                   monthlyPrice: 100,
+//           //                   textSize: textSize,
+//           //                 ),
+//           //               if (_filteredImages2[index].expiration_ == null)
+//           //                 Text(
+//           //                   'No expiration set',
+//           //                   style: TextStyle(fontSize: textSize),
+//           //                   textAlign: TextAlign.center,
+//           //                 ),
+//           //             ],
+//           //           ),
+//           //         );
+//           //       },
+//           //     ),
+//           //   ),
+//           // ),

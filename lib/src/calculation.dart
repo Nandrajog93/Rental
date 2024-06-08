@@ -1,21 +1,155 @@
+// import 'package:flutter/material.dart';
+// import 'dart:async';
 
-Always inside the container i.e statefull
-DefaultTabController + Tabview (Goes togethr)
+// // class Countdown extends StatefulWidget {
+// //   final DateTime expiration;
+// //   final double? monthlyPrice;
 
-bwlow this we talk about the TabBarView (where we have placed the icon )
-( Inside the screentype)
+// //   Countdown({required this.expiration, this.monthlyPrice});
 
-Below we have serch bar  which is inside a WIDGET 
+// //   @override
+// //   _CountdownState createState() => _CountdownState();
+// // }
+
+// // class _CountdownState extends State<Countdown> {
+// //   late Timer _timer;
+// //   late Duration _timeLeft;
+
+// //   @override
+// //   void initState() {
+// //     super.initState();
+// //     _timeLeft = _calculateTimeLeft(widget.expiration);
+// //     _startTimer();
+// //   }
+
+// //   void _startTimer() {
+// //     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+// //       setState(() {
+// //         _timeLeft = _calculateTimeLeft(widget.expiration);
+// //       });
+// //     });
+// //   }
+
+// //   @override
+// //   void dispose() {
+// //     _timer.cancel();
+// //     super.dispose();
+// //   }
+
+// //   Duration _calculateTimeLeft(DateTime expiration) {
+// //     final now = DateTime.now();
+// //     final difference = expiration.difference(now);
+
+// //     if (difference.isNegative) {
+// //       return Duration.zero;
+// //     }
+
+// //     return difference;
+// //   }
+
+// //   String _formatTime(int time) {
+// //     return time < 10 ? '0$time' : time.toString();
+// //   }
+
+// //   @override
+// //   Widget build(BuildContext context) {
+// //     final hours = _timeLeft.inHours;
+// //     final minutes = _timeLeft.inMinutes % 60;
+// //     final seconds = _timeLeft.inSeconds % 60;
+
+// //     return Column(
+// //       crossAxisAlignment: CrossAxisAlignment.start,
+// //       children: [
+// //         Text(
+// //           'Scadenza: ${_formatTime(hours)}:${_formatTime(minutes)}:${_formatTime(seconds)}',
+// //           style: TextStyle(fontSize: 16),
+// //         ),
+// //         if (widget.monthlyPrice != null)
+// //           Text(
+// //             'Prezzo mensile: \$${widget.monthlyPrice}',
+// //             style: TextStyle(fontSize: 16),
+// //           ),
+// //       ],
+// //     );
+// //   }
+// // }
 
 
-The issue is that your AppBar within buildCustomAppBar is not being displayed because it’s not inside a Scaffold. Also, you need to add content in the body to see the TabBar content.
+// class Countdown extends StatefulWidget {
+//   final DateTime expiration;
+//   final double? monthlyPrice;
 
-Here’s the updated code to fix this issue:
+//   Countdown({required this.expiration, this.monthlyPrice});
 
-Ensure DefaultTabController wraps the entire scaffold if you want the TabBar and TabBarView to work together.
-Provide TabBarView with corresponding tabs.
-Use the ResponsiveBuilder to adjust the search bar size accordingly.
+//   @override
+//   _CountdownState createState() => _CountdownState();
+// }
 
+// class _CountdownState extends State<Countdown> {
+//   late Timer _timer;
+//   late Duration _timeLeft;
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     _timeLeft = _calculateTimeLeft(widget.expiration);
+//     _startTimer();
+//   }
+
+//   void _startTimer() {
+//     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+//       setState(() {
+//         _timeLeft = _calculateTimeLeft(widget.expiration);
+//       });
+//     });
+//   }
+
+//   @override
+//   void dispose() {
+//     _timer.cancel();
+//     super.dispose();
+//   }
+
+//   Duration _calculateTimeLeft(DateTime expiration) {
+//     final now = DateTime.now();
+//     final difference = expiration.difference(now);
+
+//     if (difference.isNegative) {
+//       return Duration.zero;
+//     }
+
+//     return difference;
+//   }
+
+//   String _formatTime(int time) {
+//     return time < 10 ? '0$time' : time.toString();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final hours = _timeLeft.inHours;
+//     final minutes = _timeLeft.inMinutes % 60;
+//     final seconds = _timeLeft.inSeconds % 60;
+
+//     return Column(
+//       crossAxisAlignment: CrossAxisAlignment.start,
+//       children: [
+//         Text(
+//           'Scadenza: ${_formatTime(hours)}:${_formatTime(minutes)}:${_formatTime(seconds)}',
+//           style: TextStyle(fontSize: 16),
+//         ),
+//         if (widget.monthlyPrice != null)
+//           Text(
+//             'Prezzo mensile: \$${widget.monthlyPrice}',
+//             style: TextStyle(fontSize: 16),
+//           ),
+//       ],
+//     );
+//   }
+// }
+
+
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
@@ -43,21 +177,12 @@ class _ImageSearchScreenState extends State<ImageSearchScreen> {
 
   void _initializeImages() {
     _images = [
-      ImageItem(
-        imagePath: '/Users/nandrajog/Downloads/test_application/lib/logo6.jpeg',
-        description: 'Description 1',
-        expiration: DateTime.now().add(Duration(hours: 1)),
-      ),
-      ImageItem(
-        imagePath: '/Users/nandrajog/Downloads/test_application/lib/logo4.jpeg',
-        description: 'Description 2',
-        expiration: DateTime.now().add(Duration(hours: 2)),
-      ),
-      ImageItem(
-        imagePath: '/Users/nandrajog/Downloads/test_application/lib/logo5.jpeg',
-        description: 'Description 3',
-        expiration: DateTime.now().add(Duration(hours: 3)),
-      ),
+      ImageItem(imagePath: '/Users/nandrajog/Downloads/test_application/lib/logo6.jpeg', description: 'Description 1',
+      expiration_: null ),
+      ImageItem(imagePath: '/Users/nandrajog/Downloads/test_application/lib/logo4.jpeg', description: 'Description 2',
+      expiration_: null),
+      ImageItem(imagePath: '/Users/nandrajog/Downloads/test_application/lib/logo5.jpeg', description: 'Description 3',
+      expiration_: null),
     ];
 
     _filteredImages = List.from(_images);
@@ -65,31 +190,31 @@ class _ImageSearchScreenState extends State<ImageSearchScreen> {
 
   void _initializeImages2() {
     _images2 = [
-      ImageItem(
-        imagePath: '/Users/nandrajog/Downloads/test_application/lib/logo.jpeg',
-        description: 'Description 1',
-        expiration: DateTime.now().add(Duration(hours: 1, minutes: 30)),
-      ),
+      ImageItem(imagePath: '/Users/nandrajog/Downloads/test_application/lib/logo.jpeg', 
+      description: 'Description 1',
+      expiration_: DateTime.now().add(Duration(hours: 1))),
+      ImageItem(imagePath: '/Users/nandrajog/Downloads/test_application/lib/logo5.jpeg', description: 'Description 3',
+      expiration_: DateTime.now().add(Duration(hours: 6, minutes: 30))),
+      
     ];
 
     _filteredImages2 = List.from(_images2);
   }
 
   void _filterImages(String query) {
+    
     setState(() {
       if (query.isEmpty) {
         _filteredImages = List.from(_images);
       } else {
-        _filteredImages = _images
-            .where((image) =>
-                image.description.toLowerCase().contains(query.toLowerCase()))
-            .toList();
+        _filteredImages = _images.where((image) => image.description.toLowerCase().contains(query.toLowerCase())).toList();
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
+
     return DefaultTabController(
       length: 5,
       child: Scaffold(
@@ -154,7 +279,7 @@ class _ImageSearchScreenState extends State<ImageSearchScreen> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(8.0), 
                 child: Text(
                   _filteredImages[index].description,
                   textAlign: TextAlign.center,
@@ -192,10 +317,16 @@ class _ImageSearchScreenState extends State<ImageSearchScreen> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              Countdown(
-                expiration: _filteredImages2[index].expiration,
-                monthlyPrice: 100,
-              ),
+               if (_filteredImages2[index].expiration_ != null)
+                Countdown(
+                  expiration: _filteredImages2[index].expiration_!,
+                  monthlyPrice: 100,
+                ),
+              if (_filteredImages2[index].expiration_ == null)
+                Text(
+                  'No expiration set',
+                  style: TextStyle(fontSize: 16),
+                ),
             ],
           ),
         );
@@ -269,13 +400,9 @@ class _ImageSearchScreenState extends State<ImageSearchScreen> {
 class ImageItem {
   final String imagePath;
   final String description;
-  final DateTime expiration;
+  final DateTime? expiration_;
 
-  ImageItem({
-    required this.imagePath,
-    required this.description,
-    required this.expiration,
-  });
+  ImageItem({required this.imagePath, required this.description,required this.expiration_});
 }
 
 class Countdown extends StatefulWidget {
@@ -350,3 +477,7 @@ class _CountdownState extends State<Countdown> {
     );
   }
 }
+
+
+
+

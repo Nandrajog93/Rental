@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:test_application/src/homepage.dart';
+import 'package:test_application/src/settings/Tabview.dart';
+//import 'package:test_application/src/calculation.dart';
 //import 'package:flutter_application_1/src/maps.dart';
 //import 'package:flutter_application_1/src/settings/test.dart';
-import 'package:test_application/src/homepage.dart';
-import 'package:test_application/src/search.dart';
+// import 'package:test_application/src/homepage.dart';
+// import 'package:test_application/src/search.dart';
+// import 'package:test_application/src/settings/searchBar.dart';
+//import 'package:test_application/test.dart';
 
 // import 'shared/navigation/app_router.dart';
 import '/src/color.dart';
 
 void main() {
-  runApp(const MyApp());
+
+  runApp(
+    
+    const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -24,7 +32,7 @@ class MyApp extends StatelessWidget {
        //colorScheme: Colors.white,
 
       ),
-      home:  MyHomePage(),
+      home:  ImageSearchScreen(),
     );
   }
 }
