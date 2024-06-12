@@ -449,19 +449,3 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-// void main() {
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Responsive Login',
-//       theme: ThemeData(
-//         primarySwatch: Colors.deepPurple,
-//       ),
-//       home: LoginScreen(),
-//     );
-//   }
-// }
