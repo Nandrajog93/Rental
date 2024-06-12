@@ -54,7 +54,7 @@ class DeviceConfig {
         return 550.0;
       case DeviceScreenType.mobile:
       default:
-        return 500.0;
+        return 520.0;
     }
   }
 }
