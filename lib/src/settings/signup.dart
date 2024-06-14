@@ -61,7 +61,7 @@ static double getPadding(BuildContext context){
         return 550.0;
       case DeviceScreenType.mobile:
       default:
-        return 580.0;
+        return 560.0;
     }
   }
 
@@ -80,6 +80,15 @@ class _SignupDesktopState extends State<SignupDesktop> {
     double cardHeight = DeviceConfig.getCardHeight(context);
 
     return Scaffold(
+            // appBar: AppBar(title: Text('Example')),
+            appBar: AppBar(
+        title: Text('Sign Up'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),),
       body : Center(
         child: Card(
           elevation: 5,

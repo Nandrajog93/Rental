@@ -1,5 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:test_application/src/settings/signup.dart';
 
 class DeviceConfig {
   static double getTextSize(BuildContext context) {
@@ -54,7 +56,7 @@ class DeviceConfig {
         return 550.0;
       case DeviceScreenType.mobile:
       default:
-        return 520.0;
+        return 560.0;
     }
   }
 }
@@ -73,6 +75,8 @@ class _LoginScreenState extends State<LoginScreen> {
     double cardHeight = DeviceConfig.getCardHeight(context);
 
     return Scaffold(
+      // appBar: AppBar(title: Text('Example')),
+      appBar: AppBar(title: Text('Sign In')),
       body: Center(
         child: Card(
           elevation: 5,
@@ -186,6 +190,28 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: SizedBox(width: 8),
                   ),
                   TextSpan(
+                    // recognizer: TapGestureRecognizer()
+                    //               ..onTap = () {
+                    //                                Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => SignupDesktop()),
+                    // );
+                    //               },
+                    recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) => SignupDesktop(),
+                        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: child,
+                          );
+                        },
+                      ),
+                    );
+                  },
                     text: "Sign-Up",
                     style: TextStyle(
                       color: Colors.deepPurple,
@@ -398,7 +424,21 @@ class _LoginScreenState extends State<LoginScreen> {
                         WidgetSpan(
                           child: SizedBox(width: 8),
                         ),
-                        TextSpan(
+                        TextSpan( recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) => SignupDesktop(),
+                        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: child,
+                          );
+                        },
+                      ),
+                    );
+                  },
                           text: "Sign-Up",
                           style: TextStyle(
                             color: Colors.deepPurple,
