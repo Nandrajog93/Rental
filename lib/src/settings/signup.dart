@@ -1,5 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:test_application/src/settings/login.dart';
 
 
 
@@ -32,7 +34,7 @@ static double getPadding(BuildContext context){
       return 25;
     case DeviceScreenType.mobile:
     default:
-      return 15;
+      return 10;
   }
 
 }
@@ -78,18 +80,11 @@ class _SignupDesktopState extends State<SignupDesktop> {
     double padding = DeviceConfig.getPadding(context);
     double cardWidth= DeviceConfig.getCardWidth(context);
     double cardHeight = DeviceConfig.getCardHeight(context);
-
+    
     return Scaffold(
-            // appBar: AppBar(title: Text('Example')),
-            appBar: AppBar(
-        title: Text('Sign Up'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),),
+      appBar: AppBar(title: Text('Sign Up')),
       body : Center(
+        
         child: Card(
           elevation: 5,
           margin: EdgeInsets.symmetric(horizontal: padding,
@@ -104,9 +99,9 @@ class _SignupDesktopState extends State<SignupDesktop> {
               child: ScreenTypeLayout(
                 
                 
-              mobile: buildMobileLayout(textSize,padding),
-              tablet: buildTabletLayout(textSize, padding),
-              desktop: buildDesktopLayout(textSize, padding),
+                mobile: buildMobileLayout(textSize,padding),
+                tablet: buildTabletLayout(textSize, padding),
+                desktop: buildDesktopLayout(textSize, padding),
                 
                 ),
             ),
@@ -116,7 +111,7 @@ class _SignupDesktopState extends State<SignupDesktop> {
       )
  );
   }
-}
+
 
 
 Widget buildMobileLayout (double textSize, double padding) {
@@ -185,7 +180,7 @@ Widget buildMobileLayout (double textSize, double padding) {
             ),
 
                 ),
-           SizedBox(height: padding / 2),
+        SizedBox(height: padding / 2),
           Center(
             child: RichText(
               text: TextSpan(
@@ -201,6 +196,21 @@ Widget buildMobileLayout (double textSize, double padding) {
                     child: SizedBox(width: 8),
                   ),
                   TextSpan(
+                    recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) => LoginScreen(),
+                        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: child,
+                          );
+                        },
+                      ),
+                    );
+                  },
                     text: "Sign-In",
                     style: TextStyle(
                       color: Colors.deepPurple,
@@ -221,9 +231,6 @@ Widget buildMobileLayout (double textSize, double padding) {
 
     );
 
-    
-    
-  
 }
 Widget buildTabletLayout(double textSize, double padding) {
     return Row(
@@ -238,7 +245,7 @@ Widget buildTabletLayout(double textSize, double padding) {
                 Row(
                   children: [
                     Text(
-                      "Sign-Up",
+                      "Sign-In",
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: textSize,
@@ -290,6 +297,16 @@ Widget buildTabletLayout(double textSize, double padding) {
                   child: RichText(
                     text: TextSpan(
                       children: [
+                        TextSpan(
+                          text: "Don't have an account?",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: textSize * 0.4,
+                          ),
+                        ),
+                        WidgetSpan(
+                          child: SizedBox(width: 8),
+                        ),
                         TextSpan(
                           text: "Sign-In",
                           style: TextStyle(
@@ -368,7 +385,7 @@ Widget buildTabletLayout(double textSize, double padding) {
                     ),
                     onPressed: () {},
                     child: Text(
-                      "Sign In",
+                      "Sign Up",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: textSize * 0.5,
@@ -378,32 +395,46 @@ Widget buildTabletLayout(double textSize, double padding) {
                   ),
                 ),
                 SizedBox(height: padding / 2),
-
-           Center(
-            child: RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text:  "Already have an account?",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: textSize * 0.4,
+                Center(
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: "Already have an account?",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: textSize * 0.4,
+                          ),
+                        ),
+                        WidgetSpan(
+                          child: SizedBox(width: 8),
+                        ),
+                        TextSpan(
+                                            recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        pageBuilder: (context, animation, secondaryAnimation) => LoginScreen(),
+                        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: child,
+                          );
+                        },
+                      ),
+                    );
+                  },
+                          text: "Sign-In",
+                          style: TextStyle(
+                            color: Colors.deepPurple,
+                            fontSize: textSize * 0.4,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  WidgetSpan(
-                    child: SizedBox(width: 8),
-                  ),
-                  TextSpan(
-                    text: "Sign-In",
-                    style: TextStyle(
-                      color: Colors.deepPurple,
-                      fontSize: textSize * 0.4,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+                ),
               ],
             ),
           ),
@@ -445,7 +476,7 @@ Widget buildTabletLayout(double textSize, double padding) {
   }
 
 
-
+}
 
 //     return Scaffold(
 //       body: Container(
